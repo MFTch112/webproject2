@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css?family=Chela+One|Markazi+Text');
+
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.header{
+    flex: 0 0 20%;
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: 'Markazi Text', serif;
+    font-size: 2em;
+    & span{
+        color:gray;
+        font-size: 2.5em;
+    }
+}
+.outerContainer{
+    flex: 1 1 80%;
+    background: gray;
+    height: 700px;
+    background-image: url("./images/colisseum.jpg");
+    background-size: cover;
+    text-align: center;
+    font-family: 'Chela One', cursive;
+}
+.innerContainer{
+    margin:auto;
+    margin-top: 10%;
+    width: 20%;
+    border: 1px solid black;
+    text-align:center;
+    background: beige;
+}
+.portraitBox{
+    margin: auto;
+    width: 75%;
+    border: 2px solid black;
+    background: gray;
+}
+input[type=radio]{
+    display:none;
+}
+
+input#prt1[type=radio] + label{
+    background-image: url("./images/c1.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt2[type=radio] + label{
+    background-image: url("./images/c2.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt3[type=radio] + label{
+    background-image: url("./images/c3.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt4[type=radio] + label{
+    background-image: url("./images/c4.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt5[type=radio] + label{
+    background-image: url("./images/c5.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt6[type=radio] + label{
+    background-image: url("./images/c6.png");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt7[type=radio] + label{
+    background-image: url("./images/c7.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt8[type=radio] + label{
+    background-image: url("./images/c8.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt9[type=radio] + label{
+    background-image: url("./images/c9.jpg");
+    background-size: cover;
+    border-color: white;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+input#prt1[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt2[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt3[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt4[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt5[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt6[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt7[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt8[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+input#prt9[type=radio]:checked + label
+{
+border-color: red;
+border-style: solid;
+height: 50px;
+width: 50px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
