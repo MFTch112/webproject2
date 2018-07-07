@@ -10,11 +10,15 @@
     
 </head>
 <body>
-    <!-- <?php 
+    <h1> Leaderboard:</h1>
+    <?php 
     
-    writesave(test,1,2);
+    writesave(tes2t,1,6);
     
-    readsave();
-    ?> -->
-</body>
+   $str= getsave();
+   echo $str;
+    ?> 
+    
+    
+    </body>
 </html>
