@@ -10,11 +10,11 @@
     
 </head>
 <body>
-    <?php 
+    <!-- <?php 
     
     writesave(test,1,2);
     
     readsave();
-    ?>
+    ?> -->
 </body>
 </html>
