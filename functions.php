@@ -48,7 +48,7 @@ $enemy = array(
     'health' =>  null,
     'defense' => null,
     'weapon'=> null,
-
+    'portrait'=>null,
 );
 
 $rules = array(
@@ -58,12 +58,13 @@ $rules = array(
 function charCreate($rules, $char, $weapon){
     $nametxt = file('names.txt');
     $titletxt =file('titles.txt');
+    $portraittxt=file('portraits.txt');
     $npc=array_rand($nametxt);
     $title=array_rand($titletxt);
-
+    $portrait=array_rand($portraittxt);
     $char['name']="$nametxt[$npc] $titletxt[$title]";
     $char['weapon']=array_rand($weapon);
-    
+    $char['portrait']=$portraittxt[$portrait];
     foreach ($rules as $stat=>$rule) {       
         if (preg_match("/^[0-9]+$/", $rule)) {
             // This is only a number, and is therefore a static value
@@ -98,7 +99,8 @@ function getDamage($weapons, $single){
     for ($i = 0; $i < $count;$i++) {
         $result = $result + roll($sides);
     }
-    echo "$single: $result";
+    return $result;
+    //echo "$single: $result";
 }
 function enemyAction(){
     $temp=rand(1,3);
