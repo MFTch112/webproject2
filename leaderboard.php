@@ -1,3 +1,4 @@
+<?php require_once ("functions.php"); ?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,11 @@
     
 </head>
 <body>
+    <?php 
     
+    writesave(test,1,2);
+    
+    readsave();
+    ?>
 </body>
 </html>

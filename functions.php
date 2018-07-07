@@ -131,4 +131,22 @@ function fight($en){
     }
     */
 
+function writesave($name,$portrait,$score) {
+    $data= $name.','.$portrait.','.$score.PHP_EOL;    
+    //a for appending to savefile
+    $fh=fopen('save.txt','a');
+    fwrite($fh,$data);
+}
+
+
+function readsave(){
+    include 'save.txt';
+    $fh=fopen('save.txt','r');
+   
+    while(!feof($fh)){
+        $array = explode("\n", fread($fh, filesize('save.txt')));
+    }
+    fclose();
+    return $array;
+}
 ?>
