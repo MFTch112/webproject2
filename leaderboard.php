@@ -13,10 +13,9 @@
     <h1> Leaderboard:</h1>
     <?php 
     
-    writesave(tes2t,1,6);
-    
-   $str= getsave();
-   echo $str;
+    writeSave(tes2t,1,6);
+    print_r(getSave());    
+
     ?> 
     
     

@@ -131,7 +131,7 @@ function fight($en){
     }
     */
 
-function writesave($name,$portrait,$score) {
+function writeSave($name,$portrait,$score) {
     
     $data= $name.','.$portrait.','.$score.PHP_EOL;    
     //a for appending to savefile
@@ -140,11 +140,12 @@ function writesave($name,$portrait,$score) {
 }
 
 
-function getsave(){
-        
+function getSave(){
+    //returns save.txt in "," delimited array
     $fh = "save.txt";
     $str=file_get_contents($fh);
-    return $str;
+    $array = explode(",",$str);
+    return $array;
 }
   ?>
 
