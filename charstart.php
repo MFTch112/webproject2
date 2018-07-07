@@ -10,6 +10,7 @@ include 'functions.php';
         elseif(isset($_POST[$req])){
             $_SESSION['started']=true;
             $_SESSION[$req]=$_POST[$req];
+            $_SESSION['health']=36;
             $_SESSION['defense']=0;
             $_SESSION['currency']=0;
             $_SESSION['wins']=0;
@@ -113,7 +114,7 @@ include 'functions.php';
                 */
             ?>
         </table>
-        <form method="post" action="">
+        <form method="post" action="combat.php">
           
             <br>
             <input type="submit" name="submit">
