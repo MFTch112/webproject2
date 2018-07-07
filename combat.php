@@ -1,6 +1,7 @@
 <?php
     session_start();
     include "functions.php";    
+    $boolDefend=false;
     if(!isset($_POST['combat'])){
         $fodder=charCreate($rules, $enemy, $basicWeapons);
         $_SESSION['fodName']=$fodder['name'];
@@ -10,33 +11,40 @@
         $_SESSION['fodDefense']=$fodder['defense'];
     }
     else{
-        if($_POST['combat']=='attack'){
-            echo "test1";
+        /***************************** Attacking ******************************************/
+        if($_POST['combat']=='attack'){ 
             $damage=getDamage($basicWeapons, $_SESSION['weapon']);
-            $behavior=rand(1,4);
+            $behavior=rand(1,4);   //-------------------25% chance for enemy to defend
             if($behavior>1){
                 $fodDamage=getDamage($basicWeapons, $_SESSION['fodWeapon']);
                 $_SESSION['health']-=$fodDamage;
                 $_SESSION['fodHealth']-=$damage;
             }
             else{
-                echo "enemy defends";
+                //echo "enemy defends";
+                $boolDefend=true;
                 $_SESSION['fodHealth']-=($damage-$_SESSION['fodDefense']);
             }
-            echo "<br>";
-            echo "you did $damage damage <br>";
-
         }
+        /***************************** Defending ******************************************/ 
+        //todo
         elseif($_POST['combat']=='defend'){
-            echo "test2";
+            echo "test2"; 
         }
         else{
             echo "test3";
         }
+        /******************************* Health Check ***************************************/
         if($_SESSION['health']<=0){
             echo "you lose";
             session_unset();
             header('location:index.php');
+            exit();
+        }
+        /******************************** Currency for Consumables upon victory ******************************/
+        elseif($_SESSION['fodHealth']<=0){
+            $_SESSION['currency']+=rand(5,10);
+            header('location:rest.php');
             exit();
         }
         
@@ -51,6 +59,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+    @import url('https://fonts.googleapis.com/css?family=Chela+One|Markazi+Text');
     body{
         margin: 0;
         padding: 0;
@@ -65,6 +74,9 @@
     img{
         border: 1px solid black;
     }
+    h2{
+        font-family: 'Chela One', cursive;
+    }
     .header{
         flex: 0 0 20%;
         background: black;
@@ -73,8 +85,23 @@
         font-family: 'Markazi Text', serif;
         font-size: 2em;   
     } 
+    .header span{
+        color:gray;
+        font-size: 2.5em;
+    }
     .container{
         flex: 1 1 80%;
+    }
+    .dialogueBox{
+        margin: auto;
+        width: 50%;
+        border: 1px solid black;
+        height: 100px;
+        text-align: center;
+    }
+    .dialogueText{
+        color: salmon;
+        font-size: 2em;
     }
     .center{
         margin: auto;
@@ -170,6 +197,22 @@
                 //getDamage($basicWeapons, $_SESSION['weapon']);
 
             ?>
+            <br>
+            <div class="dialogueBox">
+                <?php 
+                if(isset($_POST['combat'])){ 
+                    echo "<br><div class=\"dialogueText\">";
+                    echo "- you did $damage damage <br>";
+                    if($boolDefend==true){
+                        echo "- enemy defends";
+                    }
+                    else{
+                        echo"- enemy did $fodDamage damage";
+                    }
+                    echo "</div>";
+                }
+                ?>
+            </div>
             <br><br>
             <div class="submissionContainer">
                 <form action="combat.php" method="post">

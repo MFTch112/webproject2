@@ -1,22 +1,6 @@
 <?php 
-include 'functions.php';
+    include 'functions.php';
     session_start();
-    $required=array('Fname','portrait','weapon', 'submit');
-    foreach($required as $req){ 
-        if(!isset($_POST[$req]) && $_SESSION['started']!=true){
-            header('location:index.php'); ////loops through each post variable to see if set. If not, and session not started, go back to index
-        }
-          
-        elseif(isset($_POST[$req])){
-            $_SESSION['started']=true;
-            $_SESSION[$req]=$_POST[$req];
-            $_SESSION['health']=36;
-            $_SESSION['defense']=0;
-            $_SESSION['currency']=0;
-            $_SESSION['wins']=0;
-        }
-    }
-
 ;
     
 ?>
@@ -117,7 +101,7 @@ include 'functions.php';
         <form method="post" action="combat.php">
           
             <br>
-           Click to Enter Arena: <input type="submit" name="submit">
+            <input type="submit" name="submit">
         </form>
     </div>
 </body>
