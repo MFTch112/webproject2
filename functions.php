@@ -1,4 +1,6 @@
 <?php 
+  require_once ("db.php");
+
 function roll ($sides) {
     return mt_rand(1,$sides);
 }
@@ -209,4 +211,33 @@ function enemyAction(){
     }
     */
 
-?>
+function writeSave($name,$portrait,$score) {
+    
+    $data= $name.','.$portrait.','.$score.PHP_EOL;    
+    //a for appending to savefile
+    $fh=fopen('save.txt','a');
+    fwrite($fh,$data);
+}
+
+
+function getSave(){
+    //returns save.txt in "," delimited array
+    $fh = "save.txt";
+    $str=file_get_contents($fh);
+    $array = explode(",",$str);
+    return $array;
+}
+
+function save($name,$score,$img,$dmg){
+      global $conn ;     
+
+        $insert="INSERT INTO leaderboard(name, score, img, dmg) VALUES ( '{$name}','{$score}','{$img}','{$dmg}' );";
+        mysqli_query($conn,$insert);
+
+}
+
+
+
+
+  ?>
+

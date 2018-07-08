@@ -77,6 +77,7 @@
             //include 'sql.php';
             //mysqli_query($conn, $insert);
             session_unset();
+
             header('location:deathscreen.php');
             exit();
         }
