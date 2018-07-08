@@ -1,5 +1,4 @@
 <?php 
-
         require_once ("db.php");
         include ("functions.php");    
 ?>
@@ -45,7 +44,7 @@
         $rank=1;
         while($row = mysqli_fetch_assoc($result)){
             
-            echo '<tr><td>' . $rank . '</td><td><img src="images/' . $row['img'] . '"></td><td>' . $row['name'] . '</td><td>' . $row['dmg'] . '</td><td>' . $row['score'] . "</td></tr>";
+            echo '<tr><td>' . $rank . '</td><td><img src="'.$row['img'].'"></td><td>' . $row['name'] . '</td><td>' . $row['dmg'] . '</td><td>' . $row['score'] . "</td></tr>";
             $rank++;
 
         //set number of high scores to display
