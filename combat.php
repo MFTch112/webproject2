@@ -2,8 +2,23 @@
     session_start();
     include "functions.php";    
     $boolDefend=false;
+    $heroDefend=false;
+    $_SESSION['levelUp']=false;
+    switch ($_SESSION['wins']) {
+        case 5:
+            $_SESSION['weapon']=array_rand($GLOBALS['enhancedWeapons']);
+            $_SESSION['defense']+=2;
+            $_SESSION['levelUp']=true;
+            break;
+        case 10:
+            $char['weapon']=array_rand($GLOBALS['epicWeapons']);
+            $_SESSION['defense']+=4;
+            $_SESSION['levelUp']=true;
+        break;
+    }
+
     if(!isset($_POST['combat'])){
-        $fodder=charCreate($rules, $enemy, $basicWeapons);
+        $fodder=charCreate($rules, $enemy);
         $_SESSION['fodName']=$fodder['name'];
         $_SESSION['fodHealth']=$fodder['health'];
         $_SESSION['fodWeapon']=$fodder['weapon'];
@@ -13,37 +28,64 @@
     else{
         /***************************** Attacking ******************************************/
         if($_POST['combat']=='attack'){ 
-            $damage=getDamage($basicWeapons, $_SESSION['weapon']);
+            $damage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon']);
             $behavior=rand(1,4);   //-------------------25% chance for enemy to defend
             if($behavior>1){
-                $fodDamage=getDamage($basicWeapons, $_SESSION['fodWeapon']);
+                $fodDamage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon']);
                 $_SESSION['health']-=$fodDamage;
                 $_SESSION['fodHealth']-=$damage;
             }
             else{
                 //echo "enemy defends";
                 $boolDefend=true;
-                $_SESSION['fodHealth']-=($damage-$_SESSION['fodDefense']);
+                $negativeCheck=($damage-$_SESSION['fodDefense']);
+                if($negativeCheck<0){   //prevents defense stat from giving back health on negative damage values
+                    $damage=0;
+                }
+                else{
+                    $damage=$negativeCheck;
+                }
+                
+                $_SESSION['fodHealth']-=$damage;
             }
         }
         /***************************** Defending ******************************************/ 
         //todo
         elseif($_POST['combat']=='defend'){
-            echo "test2"; 
+            $heroDefend=true;
+            $behavior=rand(1,4);   //-------------------25% chance for enemy to defend
+            if($behavior>1){
+                $fodDamage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon']);
+                $negativeCheck=$fodDamage-$_SESSION['defense'];
+                if($negativeCheck<0){   //prevents defense stat from giving back health on negative damage values
+                    $fodDamage=0;
+                }
+                else{
+                    $fodDamage=$negativeCheck;
+                } 
+                $_SESSION['health']-=$fodDamage;
+            }
+            else{
+                $boolDefend=true;     
+            }
         }
         else{
             echo "test3";
         }
         /******************************* Health Check ***************************************/
         if($_SESSION['health']<=0){
-            echo "you lose";
+            //include 'sql.php';
+            //mysqli_query($conn, $insert);
             session_unset();
-            header('location:index.php');            
+
+            header('location:deathscreen.php');
             exit();
         }
         /******************************** Currency for Consumables upon victory ******************************/
         elseif($_SESSION['fodHealth']<=0){
-            $_SESSION['currency']+=rand(5,10);
+            $_SESSION['recovery']=rand(10,15)+$_SESSION['wins'];
+            $_SESSION['health']+=$_SESSION['recovery'];
+            $_SESSION['wins']++;
             header('location:rest.php');
             exit();
         }
@@ -70,6 +112,9 @@
         background:beige;
         background-image: url("./images/combat.jpg");
         background-size: cover;
+    }
+    span{
+        color: gold;
     }
     img{
         border: 1px solid black;
@@ -100,24 +145,24 @@
         text-align: center;
     }
     .dialogueText{
-        color: salmon;
+        color: orangered;
         font-size: 2em;
     }
     .center{
         margin: auto;
         width: 60%;
         height: 400px;
-        margin-top:10%;
+        margin-top:5%;
         background: gray;
         opacity: .9;
     }
     .heroStats{
-        background: salmon;
+        background: orangered;
         float: left;
         color: white;
     }
     .enemyStats{
-        background: salmon;
+        background: orangered;
         float: right;
         color: white;
     }
@@ -128,7 +173,7 @@
     input#dec1[type=radio] + label{
         /* background-image: url("./images/c1.jpg");
         background-size: cover; */
-        background: red;
+        background: gold;
         width: 100px;
         border: 3px solid white;
         display:inline-block;
@@ -137,7 +182,7 @@
     input#dec2[type=radio] + label{
         /* background-image: url("./images/c1.jpg");
         background-size: cover; */
-        background: red;
+        background: gold;
         width: 100px;
         border: 3px solid white;
         display:inline-block;
@@ -148,13 +193,13 @@
         border-color: yellow;
         border-style: solid;
        */
-       border: 3px solid yellow;
+       border: 3px solid orangered;
         width: 100px;
         display:inline-block;
         padding: 0 0 0 0px;
     }
     input#dec2[type=radio]:checked + label{
-        border: 3px solid yellow;
+        border: 3px solid orangered;
         width: 100px;
         display:inline-block;
         padding: 0 0 0 0px;
@@ -181,28 +226,24 @@
             <img src=<?php echo $_SESSION['fodPortrait']?> style="float: right; width: 150px; height: 200px;">
 
             <?php 
-                echo "<div class=\"heroStats\"><p>Health: ".$_SESSION['health']."<br> Defense: ". $_SESSION['defense']."</p></div>";
-                echo "<div class=\"enemyStats\"><p>Health: ".$_SESSION['fodHealth']."<br> Defense: ". $_SESSION['fodDefense']."</p></div>";
-                echo "<h2 style=\"text-align:center;\">".$_SESSION['Fname']."<br>  vs.  <br>".$_SESSION['fodName']."</h2><br>";
-
-                /*
-                echo $fodder['name']."<br>";  
-                echo $fodder['portrait']."<br>";  
-                echo $fodder['weapon']."<br>"; 
-                echo $fodder['health']."<br>"; 
-                echo $fodder['defense']."<br>"; 
-                */
+                echo "<div class=\"heroStats\"><p>Health: ".$_SESSION['health']."<br> Defense: ". $_SESSION['defense'].
+                "<br>Max Damage: ".maxDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon'])."</p></div>";
+                echo "<div class=\"enemyStats\"><p>Health: ".$_SESSION['fodHealth']."<br> Defense: ". $_SESSION['fodDefense'].
+                "<br>Max Damage: ".maxDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon'])."</p></div>";
+                echo "<h2 style=\"text-align:center;\"><span>".$_SESSION['Fname']."</span><br>  vs.  <br><span>".$_SESSION['fodName']."</span></h2><br>";
                 $temparr=$basicWeapons['sword-b'];
-               // echo $temparr['roll'];
-                //getDamage($basicWeapons, $_SESSION['weapon']);
-
             ?>
             <br>
             <div class="dialogueBox">
                 <?php 
                 if(isset($_POST['combat'])){ 
                     echo "<br><div class=\"dialogueText\">";
-                    echo "- you did $damage damage <br>";
+                    if($heroDefend==true){
+                        echo "- you defend<br>";
+                    }
+                    else{
+                        echo "- you did $damage damage <br>";
+                    }
                     if($boolDefend==true){
                         echo "- enemy defends";
                     }

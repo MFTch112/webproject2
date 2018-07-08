@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+.container {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  margin-top: 15%;
+}
+
+p {
+  color: orangered;
+  font-size: 6em;
+  -webkit-animation: fadein 6s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  animation: fadein 6s;
+}
+
+a, a:link, a:visited {
+  color: orangered;
+  text-decoration: none;
+  font-size: 1.5em;
+  border: 1px solid gold;
+  -webkit-animation: fadein 6s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  animation: fadein 6s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Firefox < 16 */
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=ds.css.map */

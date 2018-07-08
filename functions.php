@@ -9,8 +9,7 @@ function sessionPost($array){
     $array['health']=$_SESSION['health'];
     $array['defense']=$_SESSION['defense'];
 }
-//weapon list as array
-$GLOBALS['basicWeapons'] = array (
+$GLOBALS['fullWeaponList']=array(
     'axe-b' => array (
         'name' => 'Basic Axe',
         'roll' => '1d6',
@@ -21,12 +20,11 @@ $GLOBALS['basicWeapons'] = array (
         'roll' => '1d6',
         'bonus' => '4',
     ),
-    'bow-B' => array (
+    'bow-b' => array (
         'name' => 'Basic Bow',
         'roll' => '2d5',
         'bonus' => '0',
-    ));
-$enhancedWeapons = array(
+    ),
     'axe-E' => array (
         'name' => 'Enhanced Axe',
         'roll' => '1d12',
@@ -40,6 +38,73 @@ $enhancedWeapons = array(
     'bow-E' => array (
         'name' => 'Predator Bow',
         'roll' => '2d9',
+        'bonus' => '0',
+    ),
+    'axe-E' => array (
+        'name' => 'Enhanced Axe',
+        'roll' => '1d12',
+        'bonus' => '0',
+    ),
+    'sword-E' => array (
+        'name' => 'Buster Sword',
+        'roll' => '1d12',
+        'bonus' => '0',
+    ),
+    'bow-E' => array (
+        'name' => 'Predator Bow',
+        'roll' => '2d9',
+        'bonus' => '0',
+    ), 
+);
+//weapon list as array
+$GLOBALS['basicWeapons'] = array (
+    'axe-b' => array (
+        'name' => 'Basic Axe',
+        'roll' => '1d6',
+        'bonus' => '0',
+    ),
+    'sword-b' => array (
+        'name' => 'Basic Sword',
+        'roll' => '1d6',
+        'bonus' => '4',
+    ),
+    'bow-b' => array (
+        'name' => 'Basic Bow',
+        'roll' => '2d5',
+        'bonus' => '0',
+    ));
+
+$GLOBALS['enhancedWeapons'] = array(
+    'axe-E' => array (
+        'name' => 'Enhanced Axe',
+        'roll' => '1d12',
+        'bonus' => '0',
+    ),
+    'sword-E' => array (
+        'name' => 'Buster Sword',
+        'roll' => '1d12',
+        'bonus' => '0',
+    ),
+    'bow-E' => array (
+        'name' => 'Predator Bow',
+        'roll' => '2d9',
+        'bonus' => '0',
+    ),    
+);
+$GLOBALS['epicWeapons'] = array(
+    'axe-L' => array (
+        'name' => 'Executioner Axe',
+        'roll' => '1d17',
+        'bonus' => '0',
+    ),
+    'sword-L' => array (
+        'name' => 'Claymore',
+        'roll' => '1d15',
+        'bonus' => '0',
+    ),
+    'bow-L' => array (
+        'name' => 'Compound Bow',
+        'roll' => '2d11',
         'bonus' => '0',
     ),    
 );
@@ -57,7 +122,7 @@ $rules = array(
     'health' => '4d8',
     'defense'=> '1d5',
 );
-function charCreate($rules, $char, $weapon){
+function charCreate($rules, $char){
     $nametxt = file('names.txt');
     $titletxt =file('titles.txt');
     $portraittxt=file('portraits.txt');
@@ -65,20 +130,30 @@ function charCreate($rules, $char, $weapon){
     $title=array_rand($titletxt);
     $portrait=array_rand($portraittxt);
     $char['name']="$nametxt[$npc] $titletxt[$title]";
-    $char['weapon']=array_rand($weapon);
+    if($_SESSION['wins']<5){
+        $char['weapon']=array_rand($GLOBALS['basicWeapons']);
+    }
+    elseif($_SESSION['wins']<10){
+        $char['weapon']=array_rand($GLOBALS['enhancedWeapons']);
+    }
+    else{
+        $char['weapon']=array_rand($GLOBALS['epicWeapons']);
+    }
     $char['portrait']=$portraittxt[$portrait];
     foreach ($rules as $stat=>$rule) {       
+        /*
         if (preg_match("/^[0-9]+$/", $rule)) {
             // This is only a number, and is therefore a static value
             $char[$stat] = $rule;
         } 
-        else if (preg_match("/^([0-9]+)d([0-9]+)/", $rule, $matches)) {
+        */
+        if (preg_match("/^([0-9]+)d([0-9]+)/", $rule, $matches)) {
             // This is a die roll
             $val = 0;
             for ($n = 0;$n<$matches[1];$n++) {
                 $val = $val + roll($matches[2]);
             }
-            $char[$stat] = $val;
+            $char[$stat] = $val+($_SESSION['wins']*2);
         } 
         /*else if (preg_match("/^([a-z]+)\/([0-9]+)$/", $rule, $matches)) {
             // This is a derived value of some kind.
@@ -104,12 +179,15 @@ function getDamage($weapons, $single){
     return $result;
     //echo "$single: $result";
 }
+function maxDamage($weapons, $single){
+    $temp=$weapons[$single];
+    list($count, $sides) = explode('d', $temp['roll']);
+    $result = $count * $sides;
+    return $result;
+}
 function enemyAction(){
     $temp=rand(1,3);
     //finish
-}
-function fight($en){
-    $charDamage=getDamage($basicWeapons, $_SESSION['weapon']);
 }
     
     /*
