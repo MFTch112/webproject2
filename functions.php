@@ -230,7 +230,6 @@ function getSave(){
 
 function save($name,$score,$img,$dmg){
       global $conn ;     
-
         $insert="INSERT INTO leaderboard(name, score, img, dmg) VALUES ( '{$name}','{$score}','{$img}','{$dmg}' );";
         mysqli_query($conn,$insert);
 
