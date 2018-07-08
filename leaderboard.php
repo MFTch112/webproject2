@@ -32,7 +32,7 @@
         echo "<table><tr><th>Name</th><th>Enemies Defeated</th><th>Portrait</th><th>Damage Dealt</th></tr>";
 
         while($row = mysqli_fetch_assoc($result)){
-            echo "<tr><td>" . $row['name'] . "</td><td>" . $row['score'] . "</td><td>" . $row['img'] . "</td><td>" . $row['dmg'] . "</td></tr>";
+            echo '<tr><td>' . $row['name'] . "</td><td>" . $row['score'] . '</td><td><img src="images/' . $row['img'] . '"></td><td>' . $row['dmg'] . "</td></tr>";
         
         }
         echo "</table>";
