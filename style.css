@@ -65,7 +65,7 @@ input[type=radio] {
 }
 
 input#prt1[type=radio] + label {
-  background-image: url("./images/c1.jpg");
+  background-image: url("./images/c30.jpg");
   background-size: cover;
   border-color: white;
   border-style: solid;
@@ -76,7 +76,7 @@ input#prt1[type=radio] + label {
 }
 
 input#prt2[type=radio] + label {
-  background-image: url("./images/c2.jpg");
+  background-image: url("./images/c10.png");
   background-size: cover;
   border-color: white;
   border-style: solid;

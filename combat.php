@@ -12,7 +12,7 @@
             break;
         case 10:
             $char['weapon']=array_rand($GLOBALS['epicWeapons']);
-            $_SESSION['defense']+=4;
+            $_SESSION['defense']+=2;
             $_SESSION['levelUp']=true;
         break;
     }
@@ -48,6 +48,7 @@
                 
                 $_SESSION['fodHealth']-=$damage;
             }
+            $_SESSION['damage']+=$damage;
         }
         /***************************** Defending ******************************************/ 
         //todo
@@ -74,10 +75,9 @@
         }
         /******************************* Health Check ***************************************/
         if($_SESSION['health']<=0){
-            //include 'sql.php';
-            //mysqli_query($conn, $insert);
+            include 'db.php';
+            mysqli_query($conn, $insert);
             session_unset();
-
             header('location:deathscreen.php');
             exit();
         }

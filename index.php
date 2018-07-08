@@ -21,8 +21,8 @@
                 Name: <input type="text" required name="Fname"><br><br>
                 Please Select Character Portrait:<br>
                 <div class="portraitBox">
-                    <input type="radio" name='portrait' required value="./images/c1.jpg" id="prt1"/><label for="prt1"></label> 
-                    <input type="radio" name='portrait' required value="./images/c2.jpg" id="prt2"/><label for="prt2"></label> 
+                    <input type="radio" name='portrait' required value="./images/c30.jpg" id="prt1"/><label for="prt1"></label> 
+                    <input type="radio" name='portrait' required value="./images/c10.png" id="prt2"/><label for="prt2"></label> 
                     <input type="radio" name='portrait' required value="./images/c3.jpg" id="prt3"/><label for="prt3"></label> <br>
                     <input type="radio" name='portrait' required value="./images/c4.jpg" id="prt4"/><label for="prt4"></label>
                     <input type="radio" name='portrait' required value="./images/c5.jpg" id="prt5"/><label for="prt5"></label> 

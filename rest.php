@@ -57,7 +57,7 @@
         width:250px;
     }
     .statStuff{
-        color:white;
+        color:black;
         font-size: 1.5em;
     }
     .recoveryText{
@@ -77,10 +77,11 @@
     }
     .charscreen{     
         margin:auto;
-        width: 35%;
+        width: 32%;
         border: 3px solid salmon;
         background: gray;
-        opacity: .9;
+        background-image:url('./images/p.jpg');
+        background-position-x: 100px;
         text-align:right;
     }
 
@@ -106,6 +107,10 @@
         color: red;
         font-size: 1em;
     }
+    .boldS{
+        font-weight: bold;
+        color:#3c280d;
+    }
     </style>
 </head>
 <body class-"body2">
@@ -120,10 +125,10 @@
                     $temp1=$GLOBALS['fullWeaponList'];
                     $temp2=$temp1[$_SESSION['weapon']];
                     $maxDamage=maxDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon']);
-                    echo "<p class=\"statStuff\">Name: ".$_SESSION['Fname'].
-                        "<br>Weapon: ".$temp2['name'].
-                        "<br> Max Damage: ".$maxDamage.
-                        "<br> Health: ".$_SESSION['health']."</p>"; 
+                    echo "<p class=\"statStuff\"><span class=\"boldS\">Name: </span>".$_SESSION['Fname'].
+                    "<br><span class=\"boldS\">Weapon: </span>".$temp2['name'].
+                    "<br><span class=\"boldS\">Max Damage: </span>".$maxDamage.
+                    "<br><span class=\"boldS\">Health: </span>".$_SESSION['health']."</p>"; 
                     echo "<br><br><p class=\"recoveryText\">Recovered: <strong>".$_SESSION['recovery']."</strong>hp</p>";
                 ?>
             </div>
