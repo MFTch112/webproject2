@@ -32,6 +32,11 @@ body {
   font-size: 1em;
 }
 
+.LB {
+  background: brown;
+  color: white;
+}
+
 .outerContainer {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 80%;

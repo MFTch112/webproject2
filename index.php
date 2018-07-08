@@ -40,6 +40,8 @@
                 </select><br>
                 <input type="submit" value="Submit" name="submit">
             </form>
+            <br><br>
+            <a href="leaderboard.php" class="LB">Leaderboard</a>
         </div>
     </div>
 </body>
