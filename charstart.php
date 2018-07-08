@@ -44,10 +44,10 @@ include 'functions.php';
 
         flex: 0 0 20%;
         background: black;
-        color: white;
+        color: gray;
         text-align: center;
         font-family: 'Markazi Text', serif;
-        font-size: 2em;   
+        font-size: 3em;   
     }
     .largetxt{
         font-family: 'Chela One', cursive;
@@ -56,8 +56,8 @@ include 'functions.php';
         text-align: center;
     } 
     .header span{
-        color:gray;
-        font-size: 2.5em;    
+        color:#884502;
+        font-size: 1em;    
     }  
     .container{ 
       flex: 1 1 80%;
