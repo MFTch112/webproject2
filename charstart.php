@@ -11,7 +11,7 @@ include 'functions.php';
             $_SESSION['started']=true;
             $_SESSION[$req]=$_POST[$req];
             $_SESSION['health']=36;
-            $_SESSION['defense']=0;
+            $_SESSION['defense']=3;
             $_SESSION['currency']=0;
             $_SESSION['wins']=0;
         }
@@ -23,11 +23,14 @@ include 'functions.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+    @import url('https://fonts.googleapis.com/css?family=Chela+One|Markazi+Text');
+
     body{
         margin: 0;
         padding: 0;
@@ -39,12 +42,19 @@ include 'functions.php';
         background-image: url("./images/hall.jpg");
         background-size: cover;
     }.header{
+
         flex: 0 0 20%;
         background: black;
         color: white;
         text-align: center;
         font-family: 'Markazi Text', serif;
         font-size: 2em;   
+    }
+    .largetxt{
+        font-family: 'Chela One', cursive;
+        font-size: 2em;
+        color: white;
+        text-align: center;
     } 
     .header span{
         color:gray;
@@ -55,6 +65,8 @@ include 'functions.php';
     }
     .charscreen{
         margin:auto;
+        margin-top: 5%;
+        width: 60%;
         border: 3px solid salmon;
     }
     td{
@@ -77,7 +89,6 @@ include 'functions.php';
                 <?php echo "<p></p>" 
                 ?>
             </div>
-            <input type="radio" name="dialogue">
         </div>
         
         <table>
@@ -117,7 +128,9 @@ include 'functions.php';
         <form method="post" action="combat.php">
           
             <br>
-           Click to Enter Arena: <input type="submit" name="submit">
+           <p class="largetxt">
+               Click to Enter Arena: <input type="submit" name="submit">
+           </p>
         </form>
     </div>
 </body>

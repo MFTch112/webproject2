@@ -2,8 +2,20 @@
     session_start();
     include "functions.php";    
     $boolDefend=false;
+    $heroDefend=false;
+    switch ($_SESSION['wins']) {
+        case 5:
+            $_SESSION['weapon']=array_rand($GLOBALS['enhancedWeapons']);
+            $_SESSION['defense']+=2;
+            break;
+        case 10:
+            $char['weapon']=array_rand($GLOBALS['epicWeapons']);
+            $_SESSION['defense']+=4;
+        break;
+    }
+
     if(!isset($_POST['combat'])){
-        $fodder=charCreate($rules, $enemy, $basicWeapons);
+        $fodder=charCreate($rules, $enemy);
         $_SESSION['fodName']=$fodder['name'];
         $_SESSION['fodHealth']=$fodder['health'];
         $_SESSION['fodWeapon']=$fodder['weapon'];
@@ -13,23 +25,47 @@
     else{
         /***************************** Attacking ******************************************/
         if($_POST['combat']=='attack'){ 
-            $damage=getDamage($basicWeapons, $_SESSION['weapon']);
+            $damage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon']);
             $behavior=rand(1,4);   //-------------------25% chance for enemy to defend
             if($behavior>1){
-                $fodDamage=getDamage($basicWeapons, $_SESSION['fodWeapon']);
+                $fodDamage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon']);
                 $_SESSION['health']-=$fodDamage;
                 $_SESSION['fodHealth']-=$damage;
             }
             else{
                 //echo "enemy defends";
                 $boolDefend=true;
-                $_SESSION['fodHealth']-=($damage-$_SESSION['fodDefense']);
+                $negativeCheck=($damage-$_SESSION['fodDefense']);
+                if($negativeCheck<0){   //prevents defense stat from giving back health on negative damage values
+                    $damage=0;
+                }
+                else{
+                    $damage=$negativeCheck;
+                }
+                
+                $_SESSION['fodHealth']-=$damage;
             }
         }
         /***************************** Defending ******************************************/ 
         //todo
         elseif($_POST['combat']=='defend'){
-            echo "test2"; 
+            $heroDefend=true;
+            $behavior=rand(1,4);   //-------------------25% chance for enemy to defend
+            if($behavior>1){
+                $fodDamage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon']);
+                $negativeCheck=$fodDamage-$_SESSION['defense'];
+                if($negativeCheck<0){   //prevents defense stat from giving back health on negative damage values
+                    $fodDamage=0;
+                }
+                else{
+                    $fodDamage=$negativeCheck;
+                } 
+                $_SESSION['health']-=$fodDamage;
+            }
+            else{
+                //echo "enemy defends";
+                $boolDefend=true;     
+            }
         }
         else{
             echo "test3";
@@ -43,7 +79,8 @@
         }
         /******************************** Currency for Consumables upon victory ******************************/
         elseif($_SESSION['fodHealth']<=0){
-            $_SESSION['currency']+=rand(5,10);
+            $_SESSION['health']+=rand(10,15)+$_SESSION['wins'];
+            $_SESSION['wins']++;
             header('location:rest.php');
             exit();
         }
@@ -107,7 +144,7 @@
         margin: auto;
         width: 60%;
         height: 400px;
-        margin-top:10%;
+        margin-top:5%;
         background: gray;
         opacity: .9;
     }
@@ -202,7 +239,12 @@
                 <?php 
                 if(isset($_POST['combat'])){ 
                     echo "<br><div class=\"dialogueText\">";
-                    echo "- you did $damage damage <br>";
+                    if($heroDefend==true){
+                        echo "- you defend<br>";
+                    }
+                    else{
+                        echo "- you did $damage damage <br>";
+                    }
                     if($boolDefend==true){
                         echo "- enemy defends";
                     }
