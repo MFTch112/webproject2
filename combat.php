@@ -3,14 +3,17 @@
     include "functions.php";    
     $boolDefend=false;
     $heroDefend=false;
+    $_SESSION['levelUp']=false;
     switch ($_SESSION['wins']) {
         case 5:
             $_SESSION['weapon']=array_rand($GLOBALS['enhancedWeapons']);
             $_SESSION['defense']+=2;
+            $_SESSION['levelUp']=true;
             break;
         case 10:
             $char['weapon']=array_rand($GLOBALS['epicWeapons']);
             $_SESSION['defense']+=4;
+            $_SESSION['levelUp']=true;
         break;
     }
 
@@ -72,14 +75,16 @@
         }
         /******************************* Health Check ***************************************/
         if($_SESSION['health']<=0){
-            echo "you lose";
+            //include 'sql.php';
+            //mysqli_query($conn, $insert);
             session_unset();
-            header('location:index.php');
+            header('location:deathscreen.php');
             exit();
         }
         /******************************** Currency for Consumables upon victory ******************************/
         elseif($_SESSION['fodHealth']<=0){
-            $_SESSION['health']+=rand(10,15)+$_SESSION['wins'];
+            $_SESSION['recovery']=rand(10,15)+$_SESSION['wins'];
+            $_SESSION['health']+=$_SESSION['recovery'];
             $_SESSION['wins']++;
             header('location:rest.php');
             exit();
@@ -107,6 +112,9 @@
         background:beige;
         background-image: url("./images/combat.jpg");
         background-size: cover;
+    }
+    span{
+        color: gold;
     }
     img{
         border: 1px solid black;
@@ -149,12 +157,12 @@
         opacity: .9;
     }
     .heroStats{
-        background: salmon;
+        background: orangered;
         float: left;
         color: white;
     }
     .enemyStats{
-        background: salmon;
+        background: orangered;
         float: right;
         color: white;
     }
@@ -165,7 +173,7 @@
     input#dec1[type=radio] + label{
         /* background-image: url("./images/c1.jpg");
         background-size: cover; */
-        background: red;
+        background: gold;
         width: 100px;
         border: 3px solid white;
         display:inline-block;
@@ -174,7 +182,7 @@
     input#dec2[type=radio] + label{
         /* background-image: url("./images/c1.jpg");
         background-size: cover; */
-        background: red;
+        background: gold;
         width: 100px;
         border: 3px solid white;
         display:inline-block;
@@ -185,13 +193,13 @@
         border-color: yellow;
         border-style: solid;
        */
-       border: 3px solid yellow;
+       border: 3px solid orangered;
         width: 100px;
         display:inline-block;
         padding: 0 0 0 0px;
     }
     input#dec2[type=radio]:checked + label{
-        border: 3px solid yellow;
+        border: 3px solid orangered;
         width: 100px;
         display:inline-block;
         padding: 0 0 0 0px;
@@ -218,9 +226,11 @@
             <img src=<?php echo $_SESSION['fodPortrait']?> style="float: right; width: 150px; height: 200px;">
 
             <?php 
-                echo "<div class=\"heroStats\"><p>Health: ".$_SESSION['health']."<br> Defense: ". $_SESSION['defense']."</p></div>";
-                echo "<div class=\"enemyStats\"><p>Health: ".$_SESSION['fodHealth']."<br> Defense: ". $_SESSION['fodDefense']."</p></div>";
-                echo "<h2 style=\"text-align:center;\">".$_SESSION['Fname']."<br>  vs.  <br>".$_SESSION['fodName']."</h2><br>";
+                echo "<div class=\"heroStats\"><p>Health: ".$_SESSION['health']."<br> Defense: ". $_SESSION['defense'].
+                "<br>Max Damage: ".maxDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon'])."</p></div>";
+                echo "<div class=\"enemyStats\"><p>Health: ".$_SESSION['fodHealth']."<br> Defense: ". $_SESSION['fodDefense'].
+                "<br>Max Damage: ".maxDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon'])."</p></div>";
+                echo "<h2 style=\"text-align:center;\"><span>".$_SESSION['Fname']."</span><br>  vs.  <br><span>".$_SESSION['fodName']."</span></h2><br>";
 
                 /*
                 echo $fodder['name']."<br>";  

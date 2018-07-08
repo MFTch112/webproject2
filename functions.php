@@ -177,6 +177,12 @@ function getDamage($weapons, $single){
     return $result;
     //echo "$single: $result";
 }
+function maxDamage($weapons, $single){
+    $temp=$weapons[$single];
+    list($count, $sides) = explode('d', $temp['roll']);
+    $result = $count * $sides;
+    return $result;
+}
 function enemyAction(){
     $temp=rand(1,3);
     //finish

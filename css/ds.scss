@@ -1,0 +1,39 @@
+body{
+    margin:0;
+    padding:0;
+    background: black;
+}
+.container{
+    margin:auto;
+    width: 50%;
+    text-align: center;
+    margin-top: 15%;
+}
+p{
+    color:orangered;
+    font-size: 6em;
+    -webkit-animation: fadein 6s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 6s; /* Firefox < 16 */
+        -ms-animation: fadein 6s; /* Internet Explorer */
+         -o-animation: fadein 6s; /* Opera < 12.1 */
+            animation: fadein 6s;
+}
+
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% {opacity: 1;}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    0% { opacity: 0; }
+    100% {opacity: 1;}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    100% {opacity: 1;}
+}
+

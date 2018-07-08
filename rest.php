@@ -47,12 +47,7 @@
     .container{ 
       flex: 1 1 80%;
     }
-    .charscreen{
-        margin:auto;
-        margin-top: 5%;
-        width: 60%;
-        border: 3px solid salmon;
-    }
+   
     td{
         border: 1px solid black;
         border-collapse: collapse;
@@ -61,54 +56,77 @@
         height:300px;
         width:250px;
     }
+    .statStuff{
+        color:white;
+        font-size: 1.5em;
+    }
+    .recoveryText{
+        font-size:2em;
+        color: red;
+    }
+    
+    .winText{
+        opacity: 0;
+        color:yellow;
+        text-align: center;
+        font-size: 2em;
+        -webkit-animation: fadein 6s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 6s; /* Firefox < 16 */
+            -o-animation: fadein 6s; /* Opera < 12.1 */
+                animation: fadein 6s;
+    }
+    .charscreen{     
+        margin:auto;
+        width: 50%;
+        border: 3px solid salmon;
+        background: gray;
+        opacity: .9;
+    }
+
+    @keyframes fadein {
+        0% { opacity: 0; }
+        50% {opacity: 1;}
+        100% {opacity: 0;}
+    }
+    /* Firefox < 16 */
+    @-moz-keyframes fadein {
+        0% { opacity: 0; }
+        50% {opacity: 1;}
+        100% {opacity: 1;}
+    }
+    /* Safari, Chrome and Opera > 12.1 */
+    @-webkit-keyframes fadein {
+        0% { opacity: 0; }
+        50% {opacity: 1;}
+        100% {opacity: 1;}
+    }
+
     </style>
 </head>
 <body class-"body2">
     <?php include 'header.php' ?>
 
     <div class="container">
-        <div class="charscreen">
-            <img class="cPortrait" src="<?php echo $_SESSION['portrait'] ?>">
+        <p class="winText">VICTORY!</p>
+        <div class="charscreen" style="overflow:hidden;">
+            <img class="cPortrait" style="float:left;" src="<?php echo $_SESSION['portrait'] ?>">
             <div class="ctext">
-                <?php echo "<p></p>" 
+                <?php
+                    $temp1=$GLOBALS['fullWeaponList'];
+                    $temp2=$temp1[$_SESSION['weapon']];
+                    $maxDamage=maxDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon']);
+                    echo "<p class=\"statStuff\">Name: ".$_SESSION['Fname'].
+                        "<br>Weapon: ".$temp2['name'].
+                        "<br> Max Damage: ".$maxDamage.
+                        "<br> Health: ".$_SESSION['health']."</p>"; 
+                    echo "<br><br><p class=\"recoveryText\">You have rested and recovered <strong>".$_SESSION['recovery']."</strong>hp</p>";
+                    if($_SESSION['levelUp']==true){
+                        echo "<p class=\"recoveryText\">Your Defense has increased</p>";
+                    }
                 ?>
             </div>
         </div>
         
-        <table>
-            <?php 
-                /*
-                var_dump($_SESSION);
-                $npc = file('names.txt');
-                shuffle($npc);
-                foreach ($npc as $line) {
-                    echo $line."<br>";
-                }
-                echo "$npc[1] <br>";            
-                var_dump($_POST);
-                //$w=$_POST['weapon'];
-               // echo "<br> $w <br>";
-                foreach($_POST as $things){
-                    echo "$things<br>";
-                }
-                
-                foreach ($weapons as $weapon) {
-                    list($count, $sides) = explode('d', $weapon['roll']);
-                    $result = 0;
-                    for ($i = 0; $i < $count;$i++) {
-                        $result = $result + roll($sides);
-                    }
-                    echo "<tr><td>" . $weapon['name'] . "</td><td>" 
-                . $weapon['roll'];
-                    if ($weapon['bonus'] > 0) {
-                        echo "+" . $weapon['bonus'];
-                        $result = $result + $weapon['bonus'];
-                    }
-                    echo "</td><td>" . $result . "</td></tr>";
-                }
-                */
-            ?>
-        </table>
         <form method="post" action="combat.php">
           
             <br>
