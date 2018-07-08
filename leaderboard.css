@@ -1,0 +1,57 @@
+body {
+    text-align: center;
+    font-family: 'Playfair Display SC', serif;
+    background-image: url("./images/leaderboard.jpg");
+    background-size: cover;
+}
+caption{
+    font-size:36px;
+    font-weight: 700;
+}
+
+th,
+tr,
+td {
+    border: 1px solid black;
+    font-size:25px;
+}
+
+#center {
+    background-color: rgba(201, 201, 200, 0.75);
+    width: 75%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+table {
+    width: 75%;
+    margin: 15px auto;
+    padding: 10px;
+}
+
+h1 {
+    margin-top: 15px;
+    font-size:66px;
+}
+
+img {
+    height: 200px;
+    width: 170px;
+}
+
+p {
+    font-size:28px;
+}
+hr{
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 1px black;
+}
+a{
+    font-size:28px;
+    color:black;
+    padding-bottom:5px;
+}
+a:hover { 
+    background-color: white;
+}
