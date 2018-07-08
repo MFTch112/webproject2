@@ -10,7 +10,7 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <title>Leaderboard</title>
     <style>
-     tr, td { 
+     th, tr, td { 
          border: 1px solid black; 
 
      }
@@ -22,15 +22,15 @@
 <body>
     <h1> Leaderboard:</h1>
     <?php 
-    echo "<table>";
-    echo "<tr><td>test" . "</td></tr></table>" ;
+    
     global $conn ; 
         // save("player1",10,"c10.jpg",250);
-    $sql= "SELECT * FROM leaderboard;";
+    $sql= "SELECT * FROM leaderboard ORDER BY score DESC;";
     $result = mysqli_query($conn,$sql);
     // $rowCheck= mysql_num_rows($result);
     // if($rowCheck>0){
-        echo "<table>";
+        echo "<table><tr><th>Name</th><th>Enemies Defeated</th><th>Portrait</th><th>Damage Dealt</th></tr>";
+
         while($row = mysqli_fetch_assoc($result)){
             echo "<tr><td>" . $row['name'] . "</td><td>" . $row['score'] . "</td><td>" . $row['img'] . "</td><td>" . $row['dmg'] . "</td></tr>";
         
