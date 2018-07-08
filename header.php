@@ -1,1 +1,1 @@
-<div class="header"><p><span>ENDLESS</span>Arena</p></div>
+<div class="header"><p>Endless<span>Arena</span></p></div>

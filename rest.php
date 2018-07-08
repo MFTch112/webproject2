@@ -32,7 +32,7 @@
         color: white;
         text-align: center;
         font-family: 'Markazi Text', serif;
-        font-size: 2em;   
+        font-size: 3em;   
     }
     .largetxt{
         font-family: 'Chela One', cursive;
@@ -41,8 +41,8 @@
         text-align: center;
     } 
     .header span{
-        color:gray;
-        font-size: 2.5em;    
+        color:#884502;
+        font-size: 1em;    
     }  
     .container{ 
       flex: 1 1 80%;
@@ -77,10 +77,11 @@
     }
     .charscreen{     
         margin:auto;
-        width: 50%;
+        width: 35%;
         border: 3px solid salmon;
         background: gray;
         opacity: .9;
+        text-align:right;
     }
 
     @keyframes fadein {
@@ -100,7 +101,11 @@
         50% {opacity: 1;}
         100% {opacity: 1;}
     }
-
+    .upgrade{
+        text-align:center;
+        color: red;
+        font-size: 1em;
+    }
     </style>
 </head>
 <body class-"body2">
@@ -119,14 +124,17 @@
                         "<br>Weapon: ".$temp2['name'].
                         "<br> Max Damage: ".$maxDamage.
                         "<br> Health: ".$_SESSION['health']."</p>"; 
-                    echo "<br><br><p class=\"recoveryText\">You have rested and recovered <strong>".$_SESSION['recovery']."</strong>hp</p>";
-                    if($_SESSION['levelUp']==true){
-                        echo "<p class=\"recoveryText\">Your Defense has increased</p>";
-                    }
+                    echo "<br><br><p class=\"recoveryText\">Recovered: <strong>".$_SESSION['recovery']."</strong>hp</p>";
                 ?>
             </div>
         </div>
-        
+        <div class="upgrade">
+            <?php
+                 if($_SESSION['levelUp']==true){
+                    echo "<p class=\"recoveryText\">Your Defense has increased!</p>";
+                }
+            ?>
+        </div>
         <form method="post" action="combat.php">
           
             <br>
