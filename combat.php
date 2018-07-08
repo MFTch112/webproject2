@@ -38,7 +38,7 @@
         if($_SESSION['health']<=0){
             echo "you lose";
             session_unset();
-            header('location:index.php');
+            header('location:index.php');            
             exit();
         }
         /******************************** Currency for Consumables upon victory ******************************/
