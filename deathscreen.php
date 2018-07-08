@@ -10,9 +10,7 @@
 <body>
     <div class="container">
         <p>YOU DIED</p>
-        <form action="index.php" method="post">
-            <input type="submit" value="Try Again">
-        </form>
-    </div>
+        <a href="index.php">Try Again?</a>
+   </div>
 </body>
 </html>

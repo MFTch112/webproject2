@@ -22,6 +22,19 @@ p {
   animation: fadein 6s;
 }
 
+a, a:link, a:visited {
+  color: orangered;
+  text-decoration: none;
+  font-size: 1.5em;
+  border: 1px solid gold;
+  -webkit-animation: fadein 6s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  animation: fadein 6s;
+}
+
 @keyframes fadein {
   0% {
     opacity: 0;

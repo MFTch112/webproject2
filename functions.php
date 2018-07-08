@@ -18,7 +18,7 @@ $GLOBALS['fullWeaponList']=array(
         'roll' => '1d6',
         'bonus' => '4',
     ),
-    'bow-B' => array (
+    'bow-b' => array (
         'name' => 'Basic Bow',
         'roll' => '2d5',
         'bonus' => '0',
@@ -66,7 +66,7 @@ $GLOBALS['basicWeapons'] = array (
         'roll' => '1d6',
         'bonus' => '4',
     ),
-    'bow-B' => array (
+    'bow-b' => array (
         'name' => 'Basic Bow',
         'roll' => '2d5',
         'bonus' => '0',
@@ -151,7 +151,7 @@ function charCreate($rules, $char){
             for ($n = 0;$n<$matches[1];$n++) {
                 $val = $val + roll($matches[2]);
             }
-            $char[$stat] = $val+$_SESSION['wins'];
+            $char[$stat] = $val+($_SESSION['wins']*2);
         } 
         /*else if (preg_match("/^([a-z]+)\/([0-9]+)$/", $rule, $matches)) {
             // This is a derived value of some kind.

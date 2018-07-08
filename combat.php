@@ -66,7 +66,6 @@
                 $_SESSION['health']-=$fodDamage;
             }
             else{
-                //echo "enemy defends";
                 $boolDefend=true;     
             }
         }
@@ -145,7 +144,7 @@
         text-align: center;
     }
     .dialogueText{
-        color: salmon;
+        color: orangered;
         font-size: 2em;
     }
     .center{
@@ -231,18 +230,7 @@
                 echo "<div class=\"enemyStats\"><p>Health: ".$_SESSION['fodHealth']."<br> Defense: ". $_SESSION['fodDefense'].
                 "<br>Max Damage: ".maxDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon'])."</p></div>";
                 echo "<h2 style=\"text-align:center;\"><span>".$_SESSION['Fname']."</span><br>  vs.  <br><span>".$_SESSION['fodName']."</span></h2><br>";
-
-                /*
-                echo $fodder['name']."<br>";  
-                echo $fodder['portrait']."<br>";  
-                echo $fodder['weapon']."<br>"; 
-                echo $fodder['health']."<br>"; 
-                echo $fodder['defense']."<br>"; 
-                */
                 $temparr=$basicWeapons['sword-b'];
-               // echo $temparr['roll'];
-                //getDamage($basicWeapons, $_SESSION['weapon']);
-
             ?>
             <br>
             <div class="dialogueBox">

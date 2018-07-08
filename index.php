@@ -36,7 +36,7 @@
                 <select name="weapon" size="1">
                     <option value="axe-b">Basic Axe</option>
                     <option value="sword-b">Basic Sword</option>
-                    <option value="box-b">Basic Bow</option>
+                    <option value="bow-b">Basic Bow</option>
                 </select><br>
                 <input type="submit" value="Submit" name="submit">
             </form>
