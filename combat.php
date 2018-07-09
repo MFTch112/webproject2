@@ -7,12 +7,12 @@
     switch ($_SESSION['wins']) {
         case 5:
             $_SESSION['weapon']=array_rand($GLOBALS['enhancedWeapons']);
-            $_SESSION['defense']+=2;
+            $_SESSION['defense']=5;
             $_SESSION['levelUp']=true;
             break;
         case 10:
             $char['weapon']=array_rand($GLOBALS['epicWeapons']);
-            $_SESSION['defense']+=2;
+            $_SESSION['defense']=8;
             $_SESSION['levelUp']=true;
         break;
     }
@@ -143,6 +143,7 @@
         border: 1px solid black;
         height: 100px;
         text-align: center;
+        background: beige;
     }
     .dialogueText{
         color: black;
@@ -211,8 +212,8 @@
     }
     .submissionContainer{
         margin:auto;
-        width:50%;
-        border: 1px solid black;
+        width:30%;
+        border: 1px inset;
         text-align: center;
     }
     </style>
