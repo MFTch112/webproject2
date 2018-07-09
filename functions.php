@@ -11,101 +11,99 @@ function sessionPost($array){
 $GLOBALS['fullWeaponList']=array(
     'axe-b' => array (
         'name' => 'Basic Axe',
-        'roll' => '1d6',
-        'bonus' => '0',
+        'roll' => '2d4',
+        
     ),
     'sword-b' => array (
         'name' => 'Basic Sword',
-        'roll' => '1d6',
-        'bonus' => '4',
+        'roll' => '3d2',
+        
     ),
     'bow-b' => array (
         'name' => 'Basic Bow',
         'roll' => '2d5',
-        'bonus' => '0',
+        
     ),
     'axe-E' => array (
         'name' => 'Enhanced Axe',
-        'roll' => '1d12',
-        'bonus' => '0',
+        'roll' => '3d4',
+        
     ),
     'sword-E' => array (
         'name' => 'Buster Sword',
-        'roll' => '1d12',
-        'bonus' => '0',
+        'roll' => '4d4',
+        
     ),
     'bow-E' => array (
         'name' => 'Predator Bow',
-        'roll' => '2d9',
-        'bonus' => '0',
+        'roll' => '4d5',
+        
     ),
-    'axe-E' => array (
+    'axe-L' => array (
         'name' => 'Enhanced Axe',
-        'roll' => '1d12',
-        'bonus' => '0',
+        'roll' => '6d3',
+        
     ),
-    'sword-E' => array (
+    'sword-L' => array (
         'name' => 'Buster Sword',
-        'roll' => '1d12',
-        'bonus' => '0',
+        'roll' => '5d4',
+        
     ),
-    'bow-E' => array (
+    'bow-L' => array (
         'name' => 'Predator Bow',
-        'roll' => '2d9',
-        'bonus' => '0',
+        'roll' => '5d6',
+        
     ), 
 );
 //weapon list as array
 $GLOBALS['basicWeapons'] = array (
     'axe-b' => array (
         'name' => 'Basic Axe',
-        'roll' => '1d6',
-        'bonus' => '0',
+        'roll' => '2d4',
+        
     ),
     'sword-b' => array (
         'name' => 'Basic Sword',
-        'roll' => '1d6',
-        'bonus' => '4',
+        'roll' => '3d2',
+        
     ),
     'bow-b' => array (
         'name' => 'Basic Bow',
         'roll' => '2d5',
-        'bonus' => '0',
+        
     ));
 
 $GLOBALS['enhancedWeapons'] = array(
     'axe-E' => array (
         'name' => 'Enhanced Axe',
-        'roll' => '1d12',
-        'bonus' => '0',
+        'roll' => '3d4',
+        
     ),
     'sword-E' => array (
         'name' => 'Buster Sword',
-        'roll' => '1d12',
-        'bonus' => '0',
+        'roll' => '4d4',
+        
     ),
     'bow-E' => array (
         'name' => 'Predator Bow',
-        'roll' => '2d9',
-        'bonus' => '0',
+        'roll' => '4d5',
     ),    
 );
 $GLOBALS['epicWeapons'] = array(
     'axe-L' => array (
-        'name' => 'Executioner Axe',
-        'roll' => '1d17',
-        'bonus' => '0',
+        'name' => 'Enhanced Axe',
+        'roll' => '6d3',
+        
     ),
     'sword-L' => array (
-        'name' => 'Claymore',
-        'roll' => '1d15',
-        'bonus' => '0',
+        'name' => 'Buster Sword',
+        'roll' => '5d4',
+        
     ),
     'bow-L' => array (
-        'name' => 'Compound Bow',
-        'roll' => '2d11',
-        'bonus' => '0',
-    ),    
+        'name' => 'Predator Bow',
+        'roll' => '5d6',
+    )
 );
 
 $enemy = array(
@@ -175,29 +173,10 @@ function maxDamage($weapons, $single){
 }
 function enemyAction(){
     $temp=rand(1,3);
-    //finish
+    
 }
     
-    /*
-    foreach ($weapons as $weapon) {        
-        if($single==$weapon){
-            echo "test";
-            list($count, $sides) = explode('d', $weapon['roll']);
-            $result = 0;
-            for ($i = 0; $i < $count;$i++) {
-                $result = $result + roll($sides);
-            }
-            echo "$single: $result";
-        }
-        
-        echo "<tr><td>" . $weapon['name']."</td><td>".$weapon['roll'];
-        if ($weapon['bonus'] > 0) {
-            echo "+" . $weapon['bonus'];
-            $result = $result + $weapon['bonus'];
-        }
-        echo "</td><td>" . $result . "</td></tr>";
-    }
-    */
+   
 
 function writeSave($name,$portrait,$score) {
     

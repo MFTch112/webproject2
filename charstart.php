@@ -11,7 +11,7 @@ include 'functions.php';
             $_SESSION['started']=true;
             $_SESSION[$req]=$_POST[$req];
             $_SESSION['health']=25;
-            $_SESSION['defense']=3;
+            $_SESSION['defense']=5;
             $_SESSION['wins']=0;
             $_SESSION['damage']=0;
         }
