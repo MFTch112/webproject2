@@ -13,6 +13,7 @@ include 'functions.php';
             $_SESSION['health']=25;
             $_SESSION['defense']=3;
             $_SESSION['wins']=0;
+            $_SESSION['damage']=0;
         }
     }
 
@@ -65,10 +66,13 @@ include 'functions.php';
     .charscreen{
         margin:auto;
         margin-top: 5%;
-        width: 50%;
+        width: 30%;
         border: 3px solid salmon;
         background: gray;
         opacity: .9;
+        background-image: url('./images/p.jpg');
+        background-position-x: 100px;
+
     }
     td{
         border: 1px solid black;
@@ -79,8 +83,15 @@ include 'functions.php';
         width:250px;
     }
     .statStuff{
-        color:white;
+        color:black;
         font-size: 1.5em;
+    }
+    .ctext{
+        text-align: right;
+    }
+    .boldS{
+        font-weight: bold;
+        color:#3c280d;
     }
     </style>
 </head>
@@ -95,10 +106,10 @@ include 'functions.php';
                     $temp1=$GLOBALS['fullWeaponList'];
                     $temp2=$temp1[$_SESSION['weapon']];
                     $maxDamage=maxDamage($GLOBALS['fullWeaponList'], $_SESSION['weapon']);
-                    echo "<p class=\"statStuff\">Name: ".$_SESSION['Fname'].
-                        "<br>Weapon: ".$temp2['name'].
-                        "<br> Max Damage: ".$maxDamage.
-                        "<br> Health: ".$_SESSION['health']."</p>"; 
+                    echo "<p class=\"statStuff\"><span class=\"boldS\">Name: </span>".$_SESSION['Fname'].
+                        "<br><span class=\"boldS\">Weapon: </span>".$temp2['name'].
+                        "<br><span class=\"boldS\">Max Damage: </span>".$maxDamage.
+                        "<br><span class=\"boldS\">Health: </span>".$_SESSION['health']."</p>"; 
                 ?>
             </div>
         </div>

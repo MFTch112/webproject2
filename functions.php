@@ -1,5 +1,4 @@
 <?php 
-  require_once ("db.php");
 
 function roll ($sides) {
     return mt_rand(1,$sides);
@@ -141,12 +140,6 @@ function charCreate($rules, $char){
     }
     $char['portrait']=$portraittxt[$portrait];
     foreach ($rules as $stat=>$rule) {       
-        /*
-        if (preg_match("/^[0-9]+$/", $rule)) {
-            // This is only a number, and is therefore a static value
-            $char[$stat] = $rule;
-        } 
-        */
         if (preg_match("/^([0-9]+)d([0-9]+)/", $rule, $matches)) {
             // This is a die roll
             $val = 0;
@@ -154,14 +147,9 @@ function charCreate($rules, $char){
                 $val = $val + roll($matches[2]);
             }
             $char[$stat] = $val+($_SESSION['wins']*2);
-        } 
-        /*else if (preg_match("/^([a-z]+)\/([0-9]+)$/", $rule, $matches)) {
-            // This is a derived value of some kind.
-            $character[$stat] = $character[$matches[1]] / $matches[2];
-        }
-        echo $stat . ' : ' . $character[$stat] . "<br />\n"; */
-        $defrand=rand(1,3);
-        if($defrand>1){
+        }      
+        $defrand=rand(1,4);
+        if($defrand==1){
             $char['defense']=0;
         }
     }

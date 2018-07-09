@@ -7,12 +7,12 @@
     switch ($_SESSION['wins']) {
         case 5:
             $_SESSION['weapon']=array_rand($GLOBALS['enhancedWeapons']);
-            $_SESSION['defense']+=2;
+            $_SESSION['defense']=5;
             $_SESSION['levelUp']=true;
             break;
         case 10:
             $char['weapon']=array_rand($GLOBALS['epicWeapons']);
-            $_SESSION['defense']+=4;
+            $_SESSION['defense']=8;
             $_SESSION['levelUp']=true;
         break;
     }
@@ -48,6 +48,7 @@
                 
                 $_SESSION['fodHealth']-=$damage;
             }
+            $_SESSION['damage']+=$damage;
         }
         /***************************** Defending ******************************************/ 
         //todo
@@ -74,10 +75,9 @@
         }
         /******************************* Health Check ***************************************/
         if($_SESSION['health']<=0){
-            //include 'sql.php';
-            //mysqli_query($conn, $insert);
+            include 'db.php';
+            mysqli_query($conn, $insert);
             session_unset();
-
             header('location:deathscreen.php');
             exit();
         }
@@ -143,9 +143,10 @@
         border: 1px solid black;
         height: 100px;
         text-align: center;
+        background: beige;
     }
     .dialogueText{
-        color: orangered;
+        color: black;
         font-size: 2em;
     }
     .center{
@@ -154,7 +155,7 @@
         height: 400px;
         margin-top:5%;
         background: gray;
-        opacity: .9;
+        opacity: .85;
     }
     .heroStats{
         background: orangered;
@@ -211,8 +212,8 @@
     }
     .submissionContainer{
         margin:auto;
-        width:50%;
-        border: 1px solid black;
+        width:30%;
+        border: 1px inset;
         text-align: center;
     }
     </style>
@@ -239,15 +240,25 @@
                 if(isset($_POST['combat'])){ 
                     echo "<br><div class=\"dialogueText\">";
                     if($heroDefend==true){
+                        if($boolDefend==false){
+                            echo "<audio autoplay><source src=\"./files/thud.mp3\" type=\"audio/mpeg\"></audio>";
+                        }
                         echo "- you defend<br>";
                     }
                     else{
+                        if($boolDefend==true){
+                            echo "<audio autoplay><source src=\"./files/thud.mp3\" type=\"audio/mpeg\"></audio>";
+                        }
+                        else{
+                            echo "<audio autoplay><source src=\"./files/Sword.mp3\" type=\"audio/mpeg\"></audio>";
+                        }
                         echo "- you did $damage damage <br>";
                     }
                     if($boolDefend==true){
                         echo "- enemy defends";
                     }
                     else{
+                        
                         echo"- enemy did $fodDamage damage";
                     }
                     echo "</div>";

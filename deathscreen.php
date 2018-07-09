@@ -8,6 +8,9 @@
     <title>Document</title>
 </head>
 <body>
+    <audio autoplay>
+      <source src="./files/Death.mp3" type="audio/mpeg">
+	</audio>
     <div class="container">
         <p>YOU DIED</p>
         <a href="index.php">Try Again?</a>
