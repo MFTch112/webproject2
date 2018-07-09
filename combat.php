@@ -7,12 +7,12 @@
     switch ($_SESSION['wins']) {
         case 5:
             $_SESSION['weapon']=array_rand($GLOBALS['enhancedWeapons']);
-            $_SESSION['defense']=5;
+            $_SESSION['defense']=8;
             $_SESSION['levelUp']=true;
             break;
         case 10:
             $char['weapon']=array_rand($GLOBALS['epicWeapons']);
-            $_SESSION['defense']=8;
+            $_SESSION['defense']=10;
             $_SESSION['levelUp']=true;
         break;
     }
@@ -216,6 +216,13 @@
         border: 1px inset;
         text-align: center;
     }
+    a, a:link, a:visited {
+        color: brown;
+        background: gold;
+        text-decoration: none;
+        font-size: 1.5em;
+        border: 3px solid white;
+    }
     </style>
 </head>
 <body>
@@ -265,15 +272,18 @@
                 }
                 ?>
             </div>
-            <br><br>
+            <br>
             <div class="submissionContainer">
                 <form action="combat.php" method="post">
                     <input class="decision" type="radio" required name="combat" value="attack" id="dec1"><label for="dec1"><strong>Attack</strong></label>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
                     <input class="decision" type="radio" required name="combat" value="defend" id="dec2"><label for="dec2"><strong>Defend</strong></label>
-                    <input type="hidden" name="postback" value=true><br><br>
-                    <input type="submit">
+                    <input type="hidden" name="postback" value=true><br>
+                    <a href="index.php" class="forfeit">Forfeit</a>
+                    <br><br>
+                    <input type="submit" value="Go">
                 </form>
+                <br>
             </div>
         </div>
     </div>
