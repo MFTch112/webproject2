@@ -18,7 +18,16 @@
         <div class="innerContainer">
             <h3>Enter Character Information Below:</h3>
             <form action="<?php echo htmlspecialchars($linkto)?>" method="post">
-                Name: <input type="text" required name="Fname"><br><br>
+                Name: <input type="text" required name="Fname"><br>
+                Access Key: <input type="text" required name="password" onfocus="this.value=''" value="<?php 
+                    if(isset($_COOKIE['invalid'])){            //notifies user of wrong access key
+                        echo "***wrong key***";
+                    }
+                    else{
+                        echo "";
+                    }
+                ?>">
+                <br>
                 Please Select Character Portrait:<br>
                 <div class="portraitBox">
                     <input type="radio" name='portrait' required value="./images/c30.jpg" id="prt1"/><label for="prt1"></label> 
