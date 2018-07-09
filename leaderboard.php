@@ -49,7 +49,7 @@
             $rank++;
 
         //set number of high scores to display
-            if(rank>10){
+            if($rank>10){
                 break;
             }
         }
