@@ -32,8 +32,13 @@
             $behavior=rand(1,4);   //-------------------25% chance for enemy to defend
             if($behavior>1){
                 $fodDamage=getDamage($GLOBALS['fullWeaponList'], $_SESSION['fodWeapon']);
-                $_SESSION['health']-=$fodDamage;
                 $_SESSION['fodHealth']-=$damage;
+               // $deathCheck=$_SESSION['health']-$fodDamage;
+                if($_SESSION['fodHealth']<=0){  //if you land the killing blow, enemy's attack won't hit yous
+                    $fodDamage=0;
+                }
+                $_SESSION['health']-=$fodDamage;
+                
             }
             else{
                 //echo "enemy defends";
@@ -83,7 +88,7 @@
         }
         /******************************** Currency for Consumables upon victory ******************************/
         elseif($_SESSION['fodHealth']<=0){
-            $_SESSION['recovery']=rand(10,15)+$_SESSION['wins'];
+            $_SESSION['recovery']=rand(15,20)+$_SESSION['wins'];
             $_SESSION['health']+=$_SESSION['recovery'];
             $_SESSION['wins']++;
             header('location:rest.php');

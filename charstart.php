@@ -1,6 +1,10 @@
 <?php 
+if($_POST['password']!='guest'){
+    setcookie('invalid', true, time() + 300);
+    header('location:index.php');
+}
+session_start();
 include 'functions.php';
-    session_start();
     $required=array('Fname','portrait','weapon', 'submit');
     foreach($required as $req){ 
         if(!isset($_POST[$req]) && $_SESSION['started']!=true){ //loops through each post variable to see if set. If not, and session not started, go back to index
@@ -10,7 +14,7 @@ include 'functions.php';
         elseif(isset($_POST[$req])){
             $_SESSION['started']=true;
             $_SESSION[$req]=$_POST[$req];
-            $_SESSION['health']=25;
+            $_SESSION['health']=36;
             $_SESSION['defense']=5;
             $_SESSION['wins']=0;
             $_SESSION['damage']=0;
