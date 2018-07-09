@@ -10,7 +10,7 @@ include 'functions.php';
         elseif(isset($_POST[$req])){
             $_SESSION['started']=true;
             $_SESSION[$req]=$_POST[$req];
-            $_SESSION['health']=25;
+            $_SESSION['health']=36;
             $_SESSION['defense']=5;
             $_SESSION['wins']=0;
             $_SESSION['damage']=0;
