@@ -217,8 +217,8 @@
         text-align: center;
     }
     a, a:link, a:visited {
-        color: brown;
-        background: gold;
+        color: black;
+        background: red;
         text-decoration: none;
         font-size: 1.5em;
         border: 3px solid white;
@@ -272,16 +272,17 @@
                 }
                 ?>
             </div>
-            <br>
             <div class="submissionContainer">
                 <form action="combat.php" method="post">
                     <input class="decision" type="radio" required name="combat" value="attack" id="dec1"><label for="dec1"><strong>Attack</strong></label>
                     &nbsp&nbsp&nbsp&nbsp&nbsp
                     <input class="decision" type="radio" required name="combat" value="defend" id="dec2"><label for="dec2"><strong>Defend</strong></label>
                     <input type="hidden" name="postback" value=true><br>
-                    <a href="index.php" class="forfeit">Forfeit</a>
-                    <br><br>
+                    <br>
                     <input type="submit" value="Go">
+                    <br><br>
+                    <a href="index.php" class="forfeit">Forfeit</a>
+
                 </form>
                 <br>
             </div>
