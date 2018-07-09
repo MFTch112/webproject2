@@ -91,7 +91,7 @@ include 'functions.php';
     }
     .boldS{
         font-weight: bold;
-        color:brown;
+        color:#3c280d;
     }
     </style>
 </head>

@@ -145,7 +145,7 @@
         text-align: center;
     }
     .dialogueText{
-        color: orangered;
+        color: black;
         font-size: 2em;
     }
     .center{
@@ -154,7 +154,6 @@
         height: 400px;
         margin-top:5%;
         background: gray;
-        opacity: .9;
     }
     .heroStats{
         background: orangered;
@@ -239,15 +238,25 @@
                 if(isset($_POST['combat'])){ 
                     echo "<br><div class=\"dialogueText\">";
                     if($heroDefend==true){
+                        if($boolDefend==false){
+                            echo "<audio autoplay><source src=\"./files/thud.mp3\" type=\"audio/mpeg\"></audio>";
+                        }
                         echo "- you defend<br>";
                     }
                     else{
+                        if($boolDefend==true){
+                            echo "<audio autoplay><source src=\"./files/thud.mp3\" type=\"audio/mpeg\"></audio>";
+                        }
+                        else{
+                            echo "<audio autoplay><source src=\"./files/Sword.mp3\" type=\"audio/mpeg\"></audio>";
+                        }
                         echo "- you did $damage damage <br>";
                     }
                     if($boolDefend==true){
                         echo "- enemy defends";
                     }
                     else{
+                        
                         echo"- enemy did $fodDamage damage";
                     }
                     echo "</div>";
