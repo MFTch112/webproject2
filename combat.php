@@ -154,6 +154,7 @@
         height: 400px;
         margin-top:5%;
         background: gray;
+        opacity: .85;
     }
     .heroStats{
         background: orangered;
